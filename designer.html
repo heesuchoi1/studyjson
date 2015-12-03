@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en" class="digital no-js">
+<head>
+    <meta charset="UTF-8">
+    <title>Digital designer</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/lib/jquery-2.1.4.min.js" type="text/javascript"></script>
+    <script src="js/lib/jquery.tmpl.min.js" type="text/javascript"></script>
+</head>
+<body>
+    <script type="text/javascript">
+    $(function(){
+        /**
+         * [getJSON 서버에서 json파일 호출]
+         * @param  {[String]} json파일 경로 
+         * @param  {[Function]} callback함수 인자로 json받아서 콜백내부에서 객체로 접근가능
+         * @return {[Object]} 
+         */
+         // data/did.json에 실제 json파일 경로
+        $.getJSON("data/DESIGNER.json",function(data){
+            renderTmpl(data);
+        })
+        /**
+         * [renderTmpl 파라미터로 json데이터 받아 jquery 템플릿으로 렌더링]
+         * @param  {[Object]} json데이터 받음
+         */
+        function renderTmpl(htRes){
+            $("#tmplDID")
+                .tmpl(htRes.result) // tmpl(Object) Object == JSON.parse(jsonData)
+                .appendTo(".tmpl_base");
+        }
+    });
+    </script>
+    <script src="js/toucheffects.js"></script>
+
+    <!-- 제이쿼리 템플릿 -->
+    <script id="tmplDID" type="text/x-jquery-tmpl">
+    	{{each v}}
+            <li>
+                <h1>이름 : ${nameKo}</h1>
+                <h1>Name : ${nameEN}</h1>
+                <p>Email : ${email}</p>
+                <ul>
+                    {{each workData}}
+                    <li>
+                        <p>${workTitle}</p>
+                    </li>
+                    {{/each}}
+                </ul>
+            </li>
+    	{{/each}}
+    </script>
+
+    <!-- 템플릿 붙일 엘리먼트 -->
+    <ul class="tmpl_base">
+        <!-- tmplate here -->
+    </ul>
+</body>
+</html>
+
+<script>
+$(function(){
+
+    //json
+    var DESIGNER = $("#DESIGNER"); $.getJSON("data/DESIGNER.json", function(json){
+        console.log(json);
+
+        $.each(json.result.V, function(i, item){
+            var profileSrc = "data/img/V/" + "PROFILE-" + item.id + ".jpg"
+            var emailHtml;
+            var facebookHtml;
+            if(item.email && item.facebook) {
+                emailHtml = "<a class=email href='mailto:" + item.email + "'><img src=img/emailBT.png></a>";
+                facebookHtml = "<a class=facebook href='" + item.facebook + "'><img src=img/facebookBT.png></a>";
+            } else if(item.email) {
+                emailHtml = "<a class=email href='mailto:" + item.email + "'><img src=img/emailBT.png></a>";
+                facebookHtml = "";
+            }
+
+            var divHtml = "<div class=activeInner><div class=itemCon><span class=nameKO>" + item.nameKO + "</span><span class=nameEN>" + item.nameEN + "</span><div class='nameline'></div><span class=works>MY WORKS</span>";
+
+            for (var i = 0; i < item.workData.length; i++) {
+                divHtml += "<span class=worktitle>"+ item.workData[i].workTitle +"</span>";
+            }
+
+            divHtml += "<div class=profileBT>" + emailHtml + "" + facebookHtml + "</div></div></div>";
+
+            var itemLi = $("<li/>", {
+                "class": "mix VISUALD col-xs-6 col-sm-4 col-md-3 col-lg-3 col-xl-2",
+                "data-name": item.nameKO,
+                "data-part": "V",
+                "data-id": item.id
+            }).attr("style", "background-image: url(" + profileSrc + ")");
+
+            $("<div/>",{
+                "class":"active",
+                html: divHtml
+            }).appendTo(itemLi);
+
+           
+
+            $("<div/>", { "class": "cover" }).appendTo(itemLi);
+            //$("<img/>", { "src": profileSrc }).appendTo(itemLi);
+
+            DESIGNER.append(itemLi);
+            
+        });
+
+        $.each(json.result.P, function(i, item){
+            var profileSrc = "data/img/P/" + "PROFILE-" + item.id + ".jpg"
+            var emailHtml;
+            var facebookHtml;
+            if(item.email && item.facebook) {
+                emailHtml = "<a class=email href='mailto:" + item.email + "'><img src=img/emailBT.png></a>";
+                facebookHtml = "<a class=facebook href='" + item.facebook + "'><img src=img/facebookBT.png></a>";
+            } else if(item.email) {
+                emailHtml = "<a class=email href='mailto:" + item.email + "'><img src=img/emailBT.png></a>";
+                facebookHtml = "";
+            }
+
+            var divHtml = "<div class=activeInner><div class=itemCon><span class=nameKO>" + item.nameKO + "</span><span class=nameEN>" + item.nameEN + "</span><div class='nameline'></div><span class=works>MY WORKS</span>";
+
+            for (var i = 0; i < item.workData.length; i++) {
+                divHtml += "<span class=worktitle>"+ item.workData[i].workTitle +"</span>";
+            }
+            divHtml += "<div class=profileBT>" + emailHtml + "" + facebookHtml + "</div></div></div>";
+
+            var itemLi = $("<li/>", {
+                "class": "mix PRODUCTD col-xs-6 col-sm-4 col-md-3 col-lg-3 col-xl-2",
+                "data-name": item.nameKO,
+                "data-part": "P",
+                "data-id": item.id
+            }).attr("style", "background-image: url(" + profileSrc + ")");
+
+            $("<div/>",{
+                "class":"active",
+                html: divHtml
+            }).appendTo(itemLi);
+
+            $("<div/>", { "class": "cover" }).appendTo(itemLi);
+            //$("<img/>", { "src": profileSrc }).appendTo(itemLi);
+
+            DESIGNER.append(itemLi);
+            
+        });
+
+        $.each(json.result.D, function(i, item){
+            var profileSrc = "data/img/D/" + "PROFILE-" + item.id + ".jpg"
+            var emailHtml;
+            var facebookHtml;
+            if(item.email && item.facebook) {
+                emailHtml = "<a class=email href='mailto:" + item.email + "'><img src=img/emailBT.png></a>";
+                facebookHtml = "<a class=facebook href='" + item.facebook + "'><img src=img/facebookBT.png></a>";
+            } else if(item.email) {
+                emailHtml = "<a class=email href='mailto:" + item.email + "'><img src=img/emailBT.png></a>";
+                facebookHtml = "";
+            }
+
+            var divHtml = "<div class=activeInner><div class=itemCon><span class=nameKO>" + item.nameKO + "</span><span class=nameEN>" + item.nameEN + "</span><div class='nameline'></div><span class=works>MY WORKS</span>";
+
+            for (var i = 0; i < item.workData.length; i++) {
+                divHtml += "<span class=worktitle>"+ item.workData[i].workTitle +"</span>";
+            }
+            divHtml += "<div class=profileBT>" + emailHtml + "" + facebookHtml + "</div></div></div>";
+
+            var itemLi = $("<li/>", {
+                "class": "mix DIGITALD col-xs-6 col-sm-4 col-md-3 col-lg-3 col-xl-2",
+                "data-name": item.nameKO,
+                "data-part": "D",
+                "data-id": item.id
+            }).attr("style", "background-image: url(" + profileSrc + ")");
+
+            $("<div/>",{
+                "class":"active",
+                html: divHtml
+            }).appendTo(itemLi);
+
+            $("<div/>", { "class": "cover" }).appendTo(itemLi);
+            //$("<img/>", { "src": profileSrc }).appendTo(itemLi);
+
+            DESIGNER.append(itemLi);
+            
+        });
+
+
+        // mixitup init
+        DESIGNER.mixItUp();
+
+        //마우스 오버
+//         $( ".mix" )
+//             .mouseenter(function() {
+//                 $( this ).children('div.active').stop().animate({ opacity: 1 }, 200);
+//                 $( this ).children('div.cover').stop().animate({ opacity: 1 }, 200);
+//             })
+//             .mouseleave(function() {
+//                 $( this ).children('div.active').stop().animate({ opacity: 0 }, 200);
+//                 $( this ).children('div.cover').stop().animate({ opacity: 0 }, 200);
+//             });
+//     });
+// });
+
+
+
+</script>
