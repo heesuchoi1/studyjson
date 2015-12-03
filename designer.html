@@ -59,133 +59,133 @@
 </body>
 </html>
 
-<script>
-$(function(){
+<!--<script>-->
+<!--$(function(){-->
 
     //json
-    var DESIGNER = $("#DESIGNER"); $.getJSON("data/DESIGNER.json", function(json){
-        console.log(json);
+<!--    var DESIGNER = $("#DESIGNER"); $.getJSON("data/DESIGNER.json", function(json){-->
+<!--        console.log(json);-->
 
-        $.each(json.result.V, function(i, item){
-            var profileSrc = "data/img/V/" + "PROFILE-" + item.id + ".jpg"
-            var emailHtml;
-            var facebookHtml;
-            if(item.email && item.facebook) {
-                emailHtml = "<a class=email href='mailto:" + item.email + "'><img src=img/emailBT.png></a>";
-                facebookHtml = "<a class=facebook href='" + item.facebook + "'><img src=img/facebookBT.png></a>";
-            } else if(item.email) {
-                emailHtml = "<a class=email href='mailto:" + item.email + "'><img src=img/emailBT.png></a>";
-                facebookHtml = "";
-            }
+<!--        $.each(json.result.V, function(i, item){-->
+<!--            var profileSrc = "data/img/V/" + "PROFILE-" + item.id + ".jpg"-->
+<!--            var emailHtml;-->
+<!--            var facebookHtml;-->
+<!--            if(item.email && item.facebook) {-->
+<!--                emailHtml = "<a class=email href='mailto:" + item.email + "'><img src=img/emailBT.png></a>";-->
+<!--                facebookHtml = "<a class=facebook href='" + item.facebook + "'><img src=img/facebookBT.png></a>";-->
+<!--            } else if(item.email) {-->
+<!--                emailHtml = "<a class=email href='mailto:" + item.email + "'><img src=img/emailBT.png></a>";-->
+<!--                facebookHtml = "";-->
+<!--            }-->
 
-            var divHtml = "<div class=activeInner><div class=itemCon><span class=nameKO>" + item.nameKO + "</span><span class=nameEN>" + item.nameEN + "</span><div class='nameline'></div><span class=works>MY WORKS</span>";
+<!--            var divHtml = "<div class=activeInner><div class=itemCon><span class=nameKO>" + item.nameKO + "</span><span class=nameEN>" + item.nameEN + "</span><div class='nameline'></div><span class=works>MY WORKS</span>";-->
 
-            for (var i = 0; i < item.workData.length; i++) {
-                divHtml += "<span class=worktitle>"+ item.workData[i].workTitle +"</span>";
-            }
+<!--            for (var i = 0; i < item.workData.length; i++) {-->
+<!--                divHtml += "<span class=worktitle>"+ item.workData[i].workTitle +"</span>";-->
+<!--            }-->
 
-            divHtml += "<div class=profileBT>" + emailHtml + "" + facebookHtml + "</div></div></div>";
+<!--            divHtml += "<div class=profileBT>" + emailHtml + "" + facebookHtml + "</div></div></div>";-->
 
-            var itemLi = $("<li/>", {
-                "class": "mix VISUALD col-xs-6 col-sm-4 col-md-3 col-lg-3 col-xl-2",
-                "data-name": item.nameKO,
-                "data-part": "V",
-                "data-id": item.id
-            }).attr("style", "background-image: url(" + profileSrc + ")");
+<!--            var itemLi = $("<li/>", {-->
+<!--                "class": "mix VISUALD col-xs-6 col-sm-4 col-md-3 col-lg-3 col-xl-2",-->
+<!--                "data-name": item.nameKO,-->
+<!--                "data-part": "V",-->
+<!--                "data-id": item.id-->
+<!--            }).attr("style", "background-image: url(" + profileSrc + ")");-->
 
-            $("<div/>",{
-                "class":"active",
-                html: divHtml
-            }).appendTo(itemLi);
+<!--            $("<div/>",{-->
+<!--                "class":"active",-->
+<!--                html: divHtml-->
+<!--            }).appendTo(itemLi);-->
 
            
 
-            $("<div/>", { "class": "cover" }).appendTo(itemLi);
+<!--            $("<div/>", { "class": "cover" }).appendTo(itemLi);-->
             //$("<img/>", { "src": profileSrc }).appendTo(itemLi);
 
-            DESIGNER.append(itemLi);
+<!--            DESIGNER.append(itemLi);-->
             
-        });
+<!--        });-->
 
-        $.each(json.result.P, function(i, item){
-            var profileSrc = "data/img/P/" + "PROFILE-" + item.id + ".jpg"
-            var emailHtml;
-            var facebookHtml;
-            if(item.email && item.facebook) {
-                emailHtml = "<a class=email href='mailto:" + item.email + "'><img src=img/emailBT.png></a>";
-                facebookHtml = "<a class=facebook href='" + item.facebook + "'><img src=img/facebookBT.png></a>";
-            } else if(item.email) {
-                emailHtml = "<a class=email href='mailto:" + item.email + "'><img src=img/emailBT.png></a>";
-                facebookHtml = "";
-            }
+<!--        $.each(json.result.P, function(i, item){-->
+<!--            var profileSrc = "data/img/P/" + "PROFILE-" + item.id + ".jpg"-->
+<!--            var emailHtml;-->
+<!--            var facebookHtml;-->
+<!--            if(item.email && item.facebook) {-->
+<!--                emailHtml = "<a class=email href='mailto:" + item.email + "'><img src=img/emailBT.png></a>";-->
+<!--                facebookHtml = "<a class=facebook href='" + item.facebook + "'><img src=img/facebookBT.png></a>";-->
+<!--            } else if(item.email) {-->
+<!--                emailHtml = "<a class=email href='mailto:" + item.email + "'><img src=img/emailBT.png></a>";-->
+<!--                facebookHtml = "";-->
+<!--            }-->
 
-            var divHtml = "<div class=activeInner><div class=itemCon><span class=nameKO>" + item.nameKO + "</span><span class=nameEN>" + item.nameEN + "</span><div class='nameline'></div><span class=works>MY WORKS</span>";
+<!--            var divHtml = "<div class=activeInner><div class=itemCon><span class=nameKO>" + item.nameKO + "</span><span class=nameEN>" + item.nameEN + "</span><div class='nameline'></div><span class=works>MY WORKS</span>";-->
 
-            for (var i = 0; i < item.workData.length; i++) {
-                divHtml += "<span class=worktitle>"+ item.workData[i].workTitle +"</span>";
-            }
-            divHtml += "<div class=profileBT>" + emailHtml + "" + facebookHtml + "</div></div></div>";
+<!--            for (var i = 0; i < item.workData.length; i++) {-->
+<!--                divHtml += "<span class=worktitle>"+ item.workData[i].workTitle +"</span>";-->
+<!--            }-->
+<!--            divHtml += "<div class=profileBT>" + emailHtml + "" + facebookHtml + "</div></div></div>";-->
 
-            var itemLi = $("<li/>", {
-                "class": "mix PRODUCTD col-xs-6 col-sm-4 col-md-3 col-lg-3 col-xl-2",
-                "data-name": item.nameKO,
-                "data-part": "P",
-                "data-id": item.id
-            }).attr("style", "background-image: url(" + profileSrc + ")");
+<!--            var itemLi = $("<li/>", {-->
+<!--                "class": "mix PRODUCTD col-xs-6 col-sm-4 col-md-3 col-lg-3 col-xl-2",-->
+<!--                "data-name": item.nameKO,-->
+<!--                "data-part": "P",-->
+<!--                "data-id": item.id-->
+<!--            }).attr("style", "background-image: url(" + profileSrc + ")");-->
 
-            $("<div/>",{
-                "class":"active",
-                html: divHtml
-            }).appendTo(itemLi);
+<!--            $("<div/>",{-->
+<!--                "class":"active",-->
+<!--                html: divHtml-->
+<!--            }).appendTo(itemLi);-->
 
-            $("<div/>", { "class": "cover" }).appendTo(itemLi);
+<!--            $("<div/>", { "class": "cover" }).appendTo(itemLi);-->
             //$("<img/>", { "src": profileSrc }).appendTo(itemLi);
 
-            DESIGNER.append(itemLi);
+<!--            DESIGNER.append(itemLi);-->
             
-        });
+<!--        });-->
 
-        $.each(json.result.D, function(i, item){
-            var profileSrc = "data/img/D/" + "PROFILE-" + item.id + ".jpg"
-            var emailHtml;
-            var facebookHtml;
-            if(item.email && item.facebook) {
-                emailHtml = "<a class=email href='mailto:" + item.email + "'><img src=img/emailBT.png></a>";
-                facebookHtml = "<a class=facebook href='" + item.facebook + "'><img src=img/facebookBT.png></a>";
-            } else if(item.email) {
-                emailHtml = "<a class=email href='mailto:" + item.email + "'><img src=img/emailBT.png></a>";
-                facebookHtml = "";
-            }
+<!--        $.each(json.result.D, function(i, item){-->
+<!--            var profileSrc = "data/img/D/" + "PROFILE-" + item.id + ".jpg"-->
+<!--            var emailHtml;-->
+<!--            var facebookHtml;-->
+<!--            if(item.email && item.facebook) {-->
+<!--                emailHtml = "<a class=email href='mailto:" + item.email + "'><img src=img/emailBT.png></a>";-->
+<!--                facebookHtml = "<a class=facebook href='" + item.facebook + "'><img src=img/facebookBT.png></a>";-->
+<!--            } else if(item.email) {-->
+<!--                emailHtml = "<a class=email href='mailto:" + item.email + "'><img src=img/emailBT.png></a>";-->
+<!--                facebookHtml = "";-->
+<!--            }-->
 
-            var divHtml = "<div class=activeInner><div class=itemCon><span class=nameKO>" + item.nameKO + "</span><span class=nameEN>" + item.nameEN + "</span><div class='nameline'></div><span class=works>MY WORKS</span>";
+<!--            var divHtml = "<div class=activeInner><div class=itemCon><span class=nameKO>" + item.nameKO + "</span><span class=nameEN>" + item.nameEN + "</span><div class='nameline'></div><span class=works>MY WORKS</span>";-->
 
-            for (var i = 0; i < item.workData.length; i++) {
-                divHtml += "<span class=worktitle>"+ item.workData[i].workTitle +"</span>";
-            }
-            divHtml += "<div class=profileBT>" + emailHtml + "" + facebookHtml + "</div></div></div>";
+<!--            for (var i = 0; i < item.workData.length; i++) {-->
+<!--                divHtml += "<span class=worktitle>"+ item.workData[i].workTitle +"</span>";-->
+<!--            }-->
+<!--            divHtml += "<div class=profileBT>" + emailHtml + "" + facebookHtml + "</div></div></div>";-->
 
-            var itemLi = $("<li/>", {
-                "class": "mix DIGITALD col-xs-6 col-sm-4 col-md-3 col-lg-3 col-xl-2",
-                "data-name": item.nameKO,
-                "data-part": "D",
-                "data-id": item.id
-            }).attr("style", "background-image: url(" + profileSrc + ")");
+<!--            var itemLi = $("<li/>", {-->
+<!--                "class": "mix DIGITALD col-xs-6 col-sm-4 col-md-3 col-lg-3 col-xl-2",-->
+<!--                "data-name": item.nameKO,-->
+<!--                "data-part": "D",-->
+<!--                "data-id": item.id-->
+<!--            }).attr("style", "background-image: url(" + profileSrc + ")");-->
 
-            $("<div/>",{
-                "class":"active",
-                html: divHtml
-            }).appendTo(itemLi);
+<!--            $("<div/>",{-->
+<!--                "class":"active",-->
+<!--                html: divHtml-->
+<!--            }).appendTo(itemLi);-->
 
-            $("<div/>", { "class": "cover" }).appendTo(itemLi);
+<!--            $("<div/>", { "class": "cover" }).appendTo(itemLi);-->
             //$("<img/>", { "src": profileSrc }).appendTo(itemLi);
 
-            DESIGNER.append(itemLi);
+<!--            DESIGNER.append(itemLi);-->
             
-        });
+<!--        });-->
 
 
         // mixitup init
-        DESIGNER.mixItUp();
+<!--        DESIGNER.mixItUp();-->
 
         //마우스 오버
 //         $( ".mix" )
@@ -202,4 +202,4 @@ $(function(){
 
 
 
-</script>
+<!--</script>-->
